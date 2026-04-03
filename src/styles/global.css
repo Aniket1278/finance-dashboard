@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #F5F3EF;
+  --surface:  #FDFCF9;
+  --border:   #DDD9D0;
+  --text:     #1A1916;
+  --muted:    #7A7570;
+  --accent:   #2B2925;
+  --green:    #3A7D5C;
+  --red:      #C0402A;
+  --amber:    #C17C28;
+  --blue:     #2A5FA5;
+  --radius:   6px;
+  --mono:     'DM Mono', monospace;
+  --sans:     'DM Sans', sans-serif;
+  --serif:    'DM Serif Display', serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Layout */
+.shell { display: flex; min-height: 100vh; }
+
+.sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 28px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.main {
+  flex: 1;
+  padding: 32px 36px;
+  max-width: 1100px;
+  overflow-x: hidden;
+}
+
+.logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+
+.logo span {
+  font-size: 11px;
+  font-family: var(--mono);
+  color: var(--muted);
+  display: block;
+}
+
+/* Nav */
+.nav-item {
+  display: flex;
+  gap: 10px;
+  padding: 9px 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  color: var(--muted);
+  font-size: 13px;
+  border: none;
+  background: none;
+}
+
+.nav-item:hover {
+  background: var(--bg);
+  color: var(--text);
+}
+
+.nav-item.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Role */
+.role-box {
+  margin-top: auto;
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+}
+
+.role-select {
+  width: 100%;
+  padding: 7px;
+}
+
+/* Cards */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: var(--radius);
+}
+
+.card-value.green { color: var(--green); }
+.card-value.red { color: var(--red); }
+
+/* Charts */
+.chart-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: var(--radius);
+}
+
+/* Table */
+.tx-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.tx-table th, .tx-table td {
+  padding: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* Tags */
+.tag {
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 10px;
+}
+
+.tag-income { background: #DCFCE7; }
+.tag-expense { background: #FEE2E2; }
+
+/* Amount */
+.amount.pos { color: var(--green); }
+.amount.neg { color: var(--red); }
+
+/* Insights */
+.insight-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+/* Modal */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.3);
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+
+/* Empty */
+.empty {
+  text-align: center;
+  padding: 40px;
+}
+
+/* Responsive */
+@media (max-width: 820px) {
+  .sidebar { display: none; }
+  .chart-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 480px) {
+  .card-grid { grid-template-columns: 1fr; }
+}
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 300px;
+}
+
+button {
+  padding: 6px 10px;
+  margin: 4px;
+  border: none;
+  background: #2B2925;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+.hover-card {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.hover-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}

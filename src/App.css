@@ -1,0 +1,25 @@
+/* App.css */
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+}
+
+.cards {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cards div {
+  background: white;
+  padding: 15px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  flex: 1;
+}
+
+input {
+  padding: 8px;
+  margin-bottom: 10px;
+}
