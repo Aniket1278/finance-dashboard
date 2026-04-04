@@ -3,20 +3,20 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg:       #F5F3EF;
-  --surface:  #FDFCF9;
-  --border:   #DDD9D0;
-  --text:     #1A1916;
-  --muted:    #7A7570;
-  --accent:   #2B2925;
-  --green:    #3A7D5C;
-  --red:      #C0402A;
-  --amber:    #C17C28;
-  --blue:     #2A5FA5;
-  --radius:   6px;
-  --mono:     'DM Mono', monospace;
-  --sans:     'DM Sans', sans-serif;
-  --serif:    'DM Serif Display', serif;
+  --bg: #F5F3EF;
+  --surface: #FDFCF9;
+  --border: #DDD9D0;
+  --text: #1A1916;
+  --muted: #7A7570;
+  --accent: #2B2925;
+  --green: #3A7D5C;
+  --red: #C0402A;
+  --amber: #C17C28;
+  --blue: #2A5FA5;
+  --radius: 6px;
+  --mono: 'DM Mono', monospace;
+  --sans: 'DM Sans', sans-serif;
+  --serif: 'DM Serif Display', serif;
 }
 
 body {
@@ -27,7 +27,6 @@ body {
   line-height: 1.6;
 }
 
-/* Layout */
 .shell { display: flex; min-height: 100vh; }
 
 .sidebar {
@@ -42,6 +41,7 @@ body {
   position: sticky;
   top: 0;
   height: 100vh;
+  z-index: 1000;
 }
 
 .main {
@@ -65,7 +65,6 @@ body {
   display: block;
 }
 
-/* Nav */
 .nav-item {
   display: flex;
   gap: 10px;
@@ -88,7 +87,6 @@ body {
   color: #fff;
 }
 
-/* Role */
 .role-box {
   margin-top: auto;
   border-top: 1px solid var(--border);
@@ -100,7 +98,6 @@ body {
   padding: 7px;
 }
 
-/* Cards */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -117,7 +114,6 @@ body {
 .card-value.green { color: var(--green); }
 .card-value.red { color: var(--red); }
 
-/* Charts */
 .chart-row {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -131,7 +127,6 @@ body {
   border-radius: var(--radius);
 }
 
-/* Table */
 .tx-table {
   width: 100%;
   border-collapse: collapse;
@@ -142,7 +137,6 @@ body {
   border-bottom: 1px solid var(--border);
 }
 
-/* Tags */
 .tag {
   padding: 2px 8px;
   border-radius: 3px;
@@ -152,62 +146,36 @@ body {
 .tag-income { background: #DCFCE7; }
 .tag-expense { background: #FEE2E2; }
 
-/* Amount */
 .amount.pos { color: var(--green); }
 .amount.neg { color: var(--red); }
 
-/* Insights */
 .insight-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
 }
 
-/* Modal */
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,.3);
-}
-
-.modal {
-  background: white;
-  padding: 20px;
-  border-radius: 6px;
-}
-
-/* Empty */
-.empty {
-  text-align: center;
-  padding: 40px;
-}
-
-/* Responsive */
-@media (max-width: 820px) {
-  .sidebar { display: none; }
-  .chart-row { grid-template-columns: 1fr; }
-}
-
-@media (max-width: 480px) {
-  .card-grid { grid-template-columns: 1fr; }
-}
 .overlay {
   position: fixed;
   inset: 0;
   background: rgba(0,0,0,0.4);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  z-index: 999;
 }
 
 .modal {
-  background: white;
+  background: var(--surface);
+  color: var(--text);
   padding: 20px;
   border-radius: 8px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   width: 300px;
+}
+
+.empty {
+  text-align: center;
+  padding: 40px;
 }
 
 button {
@@ -232,4 +200,93 @@ button:hover {
 .hover-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.menu-btn {
+  display: none;
+  margin-bottom: 16px;
+}
+
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  color: inherit;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+@media (max-width: 820px) {
+  .menu-btn {
+    display: block;
+  }
+
+  .chart-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: -100%;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    transition: 0.3s;
+  }
+
+  .sidebar.show {
+    left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.dark body {
+  color: #EAE7E2;
+}
+
+.dark .card,
+.dark .panel,
+.dark .sidebar,
+.dark .modal {
+  background: #1E1C19;
+  color: #EAE7E2;
+}
+
+.dark .tx-table th,
+.dark .tx-table td {
+  color: #EAE7E2;
+  border-color: #3A3733;
+}
+
+.dark input,
+.dark select {
+  background: #2A2723;
+  color: #EAE7E2;
+  border: 1px solid #3A3733;
+}
+
+.dark button {
+  background: #EAE7E2;
+  color: #12110F;
+}
+
+.dark .tag-income {
+  background: #14532d;
+  color: #bbf7d0;
+}
+
+.dark .tag-expense {
+  background: #7f1d1d;
+  color: #fecaca;
+}
+
+.dark .card-label,
+.dark .page-sub {
+  color: #B0ABA5;
 }

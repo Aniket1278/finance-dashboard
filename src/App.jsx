@@ -15,8 +15,8 @@ export default function App() {
 
   const [page, setPage] = useState("dashboard");
   const [role, setRole] = useState("viewer");
+  const [menuOpen, setMenuOpen] = useState(false);
 
-  // 💾 save automatically
   useEffect(() => {
     localStorage.setItem("txns", JSON.stringify(txns));
   }, [txns]);
@@ -38,9 +38,20 @@ export default function App() {
   return (
     <AppCtx.Provider value={{ txns, role, addTx, deleteTx, updateTx }}>
       <div className="shell">
-        <Sidebar page={page} setPage={setPage} role={role} setRole={setRole} />
+        <Sidebar
+          page={page}
+          setPage={setPage}
+          role={role}
+          setRole={setRole}
+          menuOpen={menuOpen}
+          setMenuOpen={setMenuOpen}
+        />
 
         <div className="main">
+          <button className="menu-btn" onClick={() => setMenuOpen(true)}>
+            ☰ Menu
+          </button>
+
           {page === "dashboard" && <Dashboard />}
           {page === "transactions" && <Transactions />}
           {page === "insights" && <Insights />}

@@ -22,4 +22,31 @@ body {
 input {
   padding: 8px;
   margin-bottom: 10px;
+}  
+.shell {
+  display: flex;
+}
+
+.sidebar {
+  width: 220px;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    position: fixed;
+    left: -220px;
+    top: 0;
+    height: 100vh;
+    transition: 0.3s;
+    z-index: 1000;
+  }
+
+  .sidebar.active {
+    left: 0;
+  }
 }
