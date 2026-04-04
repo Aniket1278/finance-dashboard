@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { AppCtx } from "./context/AppContext";
 import { SEED } from "./data/seed";
 
-import Sidebar from "./components/Sidebar";
 import Dashboard from "./components/Dashboard";
 import Transactions from "./components/Transactions";
 import Insights from "./components/Insights";
@@ -15,47 +14,71 @@ export default function App() {
 
   const [page, setPage] = useState("dashboard");
   const [role, setRole] = useState("viewer");
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [dark, setDark] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("txns", JSON.stringify(txns));
   }, [txns]);
 
-  const addTx = (tx) => {
-    setTxns(prev => [tx, ...prev]);
-  };
+  useEffect(() => {
+    if (dark) document.documentElement.classList.add("dark");
+    else document.documentElement.classList.remove("dark");
+  }, [dark]);
 
-  const deleteTx = (id) => {
-    setTxns(prev => prev.filter(t => t.id !== id));
-  };
-
-  const updateTx = (updatedTx) => {
-    setTxns(prev =>
-      prev.map(t => (t.id === updatedTx.id ? updatedTx : t))
-    );
-  };
+  const addTx = (tx) => setTxns(prev => [tx, ...prev]);
+  const deleteTx = (id) => setTxns(prev => prev.filter(t => t.id !== id));
+  const updateTx = (updatedTx) =>
+    setTxns(prev => prev.map(t => (t.id === updatedTx.id ? updatedTx : t)));
 
   return (
     <AppCtx.Provider value={{ txns, role, addTx, deleteTx, updateTx }}>
-      <div className="shell">
-        <Sidebar
-          page={page}
-          setPage={setPage}
-          role={role}
-          setRole={setRole}
-          menuOpen={menuOpen}
-          setMenuOpen={setMenuOpen}
-        />
+      <div className="navbar">
+        <div className="nav-left">
+          <div className="logo">
+            FinTrack
+            <span>Finance Dashboard</span>
+          </div>
+        </div>
 
-        <div className="main">
-          <button className="menu-btn" onClick={() => setMenuOpen(true)}>
-            ☰ Menu
+        <div className="nav-center">
+          <button
+            className={page === "dashboard" ? "active" : ""}
+            onClick={() => setPage("dashboard")}
+          >
+            Dashboard
           </button>
 
-          {page === "dashboard" && <Dashboard />}
-          {page === "transactions" && <Transactions />}
-          {page === "insights" && <Insights />}
+          <button
+            className={page === "transactions" ? "active" : ""}
+            onClick={() => setPage("transactions")}
+          >
+            Transactions
+          </button>
+
+          <button
+            className={page === "insights" ? "active" : ""}
+            onClick={() => setPage("insights")}
+          >
+            Insights
+          </button>
         </div>
+
+        <div className="nav-right">
+          <select value={role} onChange={(e) => setRole(e.target.value)}>
+            <option value="viewer">Viewer</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <button onClick={() => setDark(!dark)}>
+            {dark ? "Light" : "Dark"}
+          </button>
+        </div>
+      </div>
+
+      <div className="main">
+        {page === "dashboard" && <Dashboard />}
+        {page === "transactions" && <Transactions />}
+        {page === "insights" && <Insights />}
       </div>
     </AppCtx.Provider>
   );
