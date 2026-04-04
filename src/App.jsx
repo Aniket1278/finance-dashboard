@@ -69,9 +69,7 @@ export default function App() {
             <option value="admin">Admin</option>
           </select>
 
-          <button onClick={() => setDark(!dark)}>
-            {dark ? "Light" : "Dark"}
-          </button>
+          
         </div>
       </div>
 

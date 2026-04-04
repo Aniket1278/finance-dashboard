@@ -59,9 +59,7 @@ export default function Sidebar({
           <option value="admin">Admin</option>
         </select>
 
-        <button onClick={() => setDark(!dark)}>
-          {dark ? "Light Mode" : "Dark Mode"}
-        </button>
+        
       </div>
     </div>
   );
