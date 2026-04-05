@@ -4,7 +4,7 @@ import {
 } from "recharts";
 import { useApp } from "../context/AppContext";
 
-// 📊 Prepare data
+
 function getMonthlyData(txns) {
   const map = {};
 
@@ -43,7 +43,7 @@ export default function Charts() {
   return (
     <div style={{ display: "grid", gap: "20px" }}>
       
-      {/* 📈 Line Chart */}
+      
       <div>
         <h3>Monthly Trend</h3>
         <ResponsiveContainer width="100%" height={250}>
@@ -57,7 +57,7 @@ export default function Charts() {
         </ResponsiveContainer>
       </div>
 
-      {/* 📊 Bar Chart */}
+      
       <div>
         <h3>Income vs Expense</h3>
         <ResponsiveContainer width="100%" height={250}>
@@ -71,7 +71,7 @@ export default function Charts() {
         </ResponsiveContainer>
       </div>
 
-      {/* 🥧 Pie Chart */}
+      
       <div>
         <h3>Spending by Category</h3>
         <ResponsiveContainer width="100%" height={250}>

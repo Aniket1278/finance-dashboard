@@ -27,7 +27,7 @@ export default function Dashboard() {
       <h1 className="page-title">Dashboard</h1>
       <p className="page-sub">Financial overview</p>
 
-      {/* 💳 CARDS */}
+      
       <div className="card-grid" style={{ marginBottom: "30px" }}>
         <div className="card hover-card">
           <div className="card-label">💰 Total Balance</div>
@@ -47,19 +47,19 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* 📈 GRAPH */}
+      
       <div className="panel" style={{ marginBottom: "30px" }}>
         <div className="panel-title">Monthly Trend</div>
         <TrendChart data={trendData} />
       </div>
 
-      {/* 🥧 PIE */}
+      
       <div className="panel" style={{ marginBottom: "30px" }}>
         <div className="panel-title">Spending Breakdown</div>
         <CategoryPie data={categoryData} />
       </div>
 
-      {/* 📋 RECENT TRANSACTIONS */}
+      
       <div className="panel">
         <div className="panel-title">Recent Transactions</div>
 
